@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- The above was boilerplate to declare this file as a Spring Configuration File -->
+
+    <!-- Note that this id being used is the same one used here in main class: Emailer emailer = (Emailer) injector.getBean("emailer");   -->
+    <bean id="emailer" class="_1_Basics.Emailer"> <!-- Declare instances of Emailer -->
+        <constructor-arg ref="spellchecker"/> <!-- Get the object by it's defined id and inject it into the Emailer object -->
+    </bean>
+    <bean id="spellchecker" class="_1_Basics.SpellChecker"> <!-- Do the same thing with SpellChecker instances -->
+        <constructor-arg ref="dict"/> <!-- And mention it's dependencies -->
+    </bean>
+    <bean id="dict" class="_1_Basics.Dict" /> <!-- Declare instances of Dict -->
+
+    <!-- Note that alternatively to defining/exposing each dependency by it's own identifier, we can nest dependencies -->
+    <bean id="spellchecker-nested" class="_1_Basics.SpellChecker">
+        <constructor-arg><bean class="_1_Basics.Dict"/></constructor-arg>
+    </bean>
+</beans>
