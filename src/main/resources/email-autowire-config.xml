@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="emailer" class="_1_Basics.Emailer" autowire="constructor"/>
+    <bean id="spellchecker" class="_1_Basics.SpellChecker" autowire="constructor" /> <!-- Do the same thing with SpellChecker instances -->
+    <bean id="dict" class="_1_Basics.Dict"/> <!-- Declare instances of Dict -->
+</beans>

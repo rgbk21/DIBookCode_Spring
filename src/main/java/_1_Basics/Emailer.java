@@ -29,7 +29,7 @@ class EmailClient {
 
 class Test {
   public static void main(String[] args) {
-    BeanFactory injector = new FileSystemXmlApplicationContext("src/main/resources/email.xml");
+    BeanFactory injector = new FileSystemXmlApplicationContext("src/main/resources/email-autowire-config.xml");
     Emailer emailer = (Emailer) injector.getBean("emailer");
     emailer.send("This is from the Spring Context");
   }
