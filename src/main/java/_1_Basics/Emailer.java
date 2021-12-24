@@ -1,11 +1,15 @@
 package _1_Basics;
 
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Emailer {
   private final SpellChecker spellChecker;
 
+  @Autowired
   public Emailer(SpellChecker spellChecker) {
     this.spellChecker = spellChecker;
   }
@@ -29,7 +33,7 @@ class EmailClient {
 
 class Test {
   public static void main(String[] args) {
-    BeanFactory injector = new FileSystemXmlApplicationContext("src/main/resources/email-autowire-config.xml");
+    BeanFactory injector = new ClassPathXmlApplicationContext("email-actual-autowire-config.xml");
     Emailer emailer = (Emailer) injector.getBean("emailer");
     emailer.send("This is from the Spring Context");
   }

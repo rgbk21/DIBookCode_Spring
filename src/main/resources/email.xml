@@ -14,7 +14,7 @@
     <bean id="dict" class="_1_Basics.Dict" /> <!-- Declare instances of Dict -->
 
     <!-- Note that alternatively to defining/exposing each dependency by it's own identifier, we can nest dependencies -->
-    <bean id="spellchecker-nested" class="_1_Basics.SpellChecker">
-        <constructor-arg><bean class="_1_Basics.Dict"/></constructor-arg>
-    </bean>
+<!--    <bean id="spellchecker-nested" class="_1_Basics.SpellChecker">-->
+<!--        <constructor-arg><bean class="_1_Basics.Dict"/></constructor-arg>-->
+<!--    </bean>-->
 </beans>
