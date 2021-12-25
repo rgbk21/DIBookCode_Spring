@@ -4,17 +4,29 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!-- The above was boilerplate to declare this file as a Spring Configuration File -->
 
-    <!-- Note that this id being used is the same one used here in main class: Emailer emailer = (Emailer) injector.getBean("emailer");   -->
-    <bean id="emailer" class="_1_Basics.Emailer"> <!-- Declare instances of Emailer -->
-        <constructor-arg ref="spellchecker"/> <!-- Get the object by it's defined id and inject it into the Emailer object -->
+    <!-- Rather than use a flat keyspace, such as EnglishEmailer, EnglishSpellChecker, instead make use of namespaces as they are much
+       more readable and easier to understand -->
+    <bean id="emailer.english" class="_1_Basics.Emailer"> <!-- Declare instances of English Emailer -->
+        <constructor-arg ref="spellchecker.english"/> <!-- Explicitly pass in an english spellchecker -->
     </bean>
-    <bean id="spellchecker" class="_1_Basics.SpellChecker"> <!-- Do the same thing with SpellChecker instances -->
-        <constructor-arg ref="dict"/> <!-- And mention it's dependencies -->
+    <!-- No matching constructor found in class 'EnglishSpellChecker'
+    EnglishSpellChecker(...):
+    Bean:
+    Dict dictionary ???   -->
+    <bean id="spellchecker.english" class="_1_Basics.EnglishSpellChecker"> <!-- Do the same thing with SpellChecker instances -->
+        <constructor-arg ref="dict"/> <!-- And mention its dependencies -->
     </bean>
-    <bean id="dict" class="_1_Basics.Dict" /> <!-- Declare instances of Dict -->
 
-    <!-- Note that alternatively to defining/exposing each dependency by it's own identifier, we can nest dependencies -->
-<!--    <bean id="spellchecker-nested" class="_1_Basics.SpellChecker">-->
-<!--        <constructor-arg><bean class="_1_Basics.Dict"/></constructor-arg>-->
-<!--    </bean>-->
+    <bean id="emailer.french" class="_1_Basics.Emailer"> <!-- Declare instances of French Emailer -->
+        <constructor-arg ref="spellchecker.french"/> <!-- Explicitly pass in an french spellchecker -->
+    </bean>
+
+    <!-- No matching constructor found in class 'FrenchSpellChecker'
+    FrenchSpellChecker(...): Bean:
+    Dict dictionary ???-->
+    <bean id="spellchecker.french" class="_1_Basics.FrenchSpellChecker"> <!-- Do the same thing with SpellChecker instances -->
+        <constructor-arg ref="dict"/> <!-- And mention its dependencies -->
+    </bean>
+
+    <bean id="dict" class="_1_Basics.Dict" /> <!-- Declare instances of Dict -->
 </beans>
