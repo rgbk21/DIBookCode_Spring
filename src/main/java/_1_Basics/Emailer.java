@@ -1,7 +1,9 @@
 package _1_Basics;
 
+import _1_Basics.SpringConfig.EmailBeanConfig;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -32,8 +34,20 @@ class EmailClient {
 
 class Test {
   public static void main(String[] args) {
-    BeanFactory injector = new FileSystemXmlApplicationContext("src/main/resources/email.xml");
-    Emailer emailer = (Emailer) injector.getBean("emailer.french");
-    emailer.send("This is from the Spring Context");
+    AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+    context.register(EmailBeanConfig.class);
+    context.refresh();
+
+    // If you had just a single object of a particular type, you could have fetched the object using
+    // the type of the object
+    EnglishSpellChecker englishSpellChecker = context.getBean(EnglishSpellChecker.class);
+    englishSpellChecker.validateText("Directly from the spellchecker");
+
+    Emailer frenchEmailer = (Emailer) context.getBean("emailer.french");
+    frenchEmailer.send("This is a french email");
+
+    // If a custom bean name has not been specified, then the method name becomes the name of the bean
+    Emailer englishEmailer = (Emailer) context.getBean("englishEmailer");
+    englishEmailer.send("This is an english email");
   }
 }
