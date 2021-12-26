@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- The 'ref' corresponds to the name of the bean that Spring will search for -->
+    <!-- The 'name' corresponds to the name of the setter that will be used to set this property on the class.
+       For guitar dependency for example, Spring will look for setGuitar() method on the Amplifier class -->
+    <bean id="amplifier" class="_3_InvestigatingDI.Amplifier">
+        <property name="guitar" ref="bean.equipment.guitar"/>
+        <property name="footpedal" ref="bean.equipment.footpedal"/>
+        <property name="speaker" ref="bean.equipment.speaker"/>
+    </bean>
+
+    <bean id="bean.equipment.guitar" class="_3_InvestigatingDI.Guitar"/>
+    <bean id="bean.equipment.footpedal" class="_3_InvestigatingDI.Footpedal"/>
+    <bean id="bean.equipment.speaker" class="_3_InvestigatingDI.Speaker"/>
+
+    <!-- We can also use encapsulation to do it like this: -->
+    <bean id="amplifier-encapsulated" class="_3_InvestigatingDI.Amplifier">
+        <property name="guitar">
+            <bean class="_3_InvestigatingDI.Guitar"/>
+        </property>
+        <property name="footpedal">
+            <bean class="_3_InvestigatingDI.Footpedal"/>
+        </property>
+        <property name="speaker">
+            <bean class="_3_InvestigatingDI.Speaker"/>
+        </property>
+    </bean>
+</beans>
