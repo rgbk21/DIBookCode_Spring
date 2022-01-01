@@ -24,13 +24,28 @@ public class Amplifier {
   }
 
   public void playMusic() {
+    guitar.setUpGuitar();
+    speaker.setUpSpeaker();
+    footpedal.setUpFootpedal();
     System.out.println("WAAAAAH!");
   }
 }
 
-class Guitar {}
-class Speaker {}
-class Footpedal {}
+class Guitar {
+  public void setUpGuitar() {
+    System.out.println("Guitar set up!");
+  }
+}
+class Speaker {
+  public void setUpSpeaker() {
+    System.out.println("Speaker set up!");
+  }
+}
+class Footpedal {
+  public void setUpFootpedal() {
+    System.out.println("FootPedal Set up!");
+  }
+}
 
 class Test {
   public static void main(String[] args) {

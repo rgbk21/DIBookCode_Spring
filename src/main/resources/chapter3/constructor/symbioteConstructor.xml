@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="hostProxy" class="_3_InvestigatingDI.CircularDependency.SolutionUsingConstructors.HostProxy">
+        <property name="delegate" ref="host"/>
+    </bean>
+    <bean id="host" class="_3_InvestigatingDI.CircularDependency.SolutionUsingConstructors.HostImpl">
+        <constructor-arg ref="symbiote"/>
+    </bean>
+    <bean id="symbiote" class="_3_InvestigatingDI.CircularDependency.SolutionUsingConstructors.SymbioteImpl">
+        <constructor-arg ref="hostProxy"/>
+    </bean>
+</beans>

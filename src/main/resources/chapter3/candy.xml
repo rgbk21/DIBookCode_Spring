@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Normal spring config telling it to create a bean 'candy' using Sugar class as injected args -->
+    <!-- But note that we had to add the scope tag as well here additionally. Without this, the dispense() method was
+       always returning the same instance of the Candy class. Adding the prototype now causes a new instance of the Candy class
+       to be returned on each invocation of dispense(). Consequently, the sugar reference within each candy reference is also now new. -->
+    <bean id="candy" scope="prototype" class="_3_InvestigatingDI.Candy">
+        <constructor-arg><bean class="_3_InvestigatingDI.Sugar"/></constructor-arg>
+    </bean>
+
+    <!-- The lookup-method tag tells Spring to intercept dispense() and treat it as a factory and that it should return object graphs bound to
+       key 'candy' when called -->
+    <bean id="dispenser" class="_3_InvestigatingDI.Dispenser">
+        <lookup-method name="dispense" bean="candy"/>
+    </bean>
+</beans>
