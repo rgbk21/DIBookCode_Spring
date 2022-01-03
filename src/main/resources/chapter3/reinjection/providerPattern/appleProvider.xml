@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="beans.granny" class="_3_InvestigatingDI.Reinjection.Soln_ProviderPattern.Granny">
+        <constructor-arg ref="beans.appleProvider"/>
+    </bean>
+
+    <bean id="beans.appleProvider" class="_3_InvestigatingDI.Reinjection.Soln_ProviderPattern.AppleProvider"/>
+    <bean id="beans.apple" class="_3_InvestigatingDI.Reinjection.Soln_ProviderPattern.Apple" scope="prototype"/>
+
+</beans>
