@@ -1,12 +1,7 @@
 package _1_Basics;
 
 import _1_Basics.SpringConfig.EmailBeanConfig;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
-import org.springframework.stereotype.Component;
 
 public class Emailer {
   private final SpellChecker spellChecker;
