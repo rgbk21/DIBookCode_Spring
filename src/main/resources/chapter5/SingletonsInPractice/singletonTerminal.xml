@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="terminal" class="_5_Scope.SingletonsInPractice.MasterTerminal" scope="singleton"/>
+    <!-- Both the camera.* beans are supposed to create instances of the same class. And both are defined as Singleton. -->
+    <!-- Does this mean that a SINGLE instance of the SimpleCamera class will be created that will be returned whenever either of the beans are requested? -->
+    <bean id="camera.basement" class="_5_Scope.SingletonsInPractice.SimpleCamera" scope="singleton">
+        <constructor-arg ref="terminal"/>
+    </bean>
+    <bean id="camera.penthouse" class="_5_Scope.SingletonsInPractice.SimpleCamera" scope="singleton">
+        <constructor-arg ref="terminal"/>
+    </bean>
+</beans>

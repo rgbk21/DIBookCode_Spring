@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="terminal" class="_5_Scope.SingletonsInPractice.MasterTerminal" scope="singleton"/>
+    <!-- This instance of SimpleCamera is associated with a Singleton. Hence, when we ask the injector for an instance of camera.basement
+        it is the SAME instance of the class that will be returned -->
+    <bean id="camera.basement" class="_5_Scope.SingletonsInPractice.SimpleCamera" scope="singleton">
+        <constructor-arg ref="terminal"/>
+    </bean>
+    <!-- This instance of SimpleCamera is associated with a Prototype. Hence, when we ask the injector for an instance of camera.penthouse
+        it will be a new instance of the SimpleCamera that will be returned. -->
+    <!-- Moral of the story: Same Class. Different behavior. Hence, scope is NOT associated with class/object. -->
+    <!-- It is associated with KEY. -->
+    <bean id="camera.penthouse" class="_5_Scope.SingletonsInPractice.SimpleCamera" scope="prototype">
+        <constructor-arg ref="terminal"/>
+    </bean>
+</beans>
